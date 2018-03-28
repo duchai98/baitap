@@ -1,1 +1,21 @@
 
+
+- t?o ra 2 package Controller và Model trong JavaResource>src
+
+
+- copy các file *.java tuong ?ng trong các folder (? trong folder java) v?i package v?a t?o
+
+
+- coppy các file *.jar trong folder JSTL-api vào SQL-api vào WebContent>WEB-INF>lib
+
+
+- coppy các file web.xml vào WebContent>WEB-INF
+
+
+- coppy các file *.jsp vào WebContent
+
+
+- d? ch?nh s?a thông tin database, vào web.xml ch?nh s?a n?t dung trong các th? param-value
+
+
+-- t?o database s? d?ng code trong init_db_book.sql
