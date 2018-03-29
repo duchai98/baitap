@@ -1,21 +1,21 @@
 
 
-- t?o ra 2 package Controller v� Model trong JavaResource>src
+- tạo ra 2 package Controller và Model trong JavaResource>src
 
 
-- copy c�c file *.java tuong ?ng trong c�c folder (? trong folder java) v?i package v?a t?o
+- copy các file *.java tương ứng trong các folder (ở trong folder java) với package vừa tạo
 
 
-- coppy c�c file *.jar trong folder JSTL-api v�o SQL-api v�o WebContent>WEB-INF>lib
+- coppy các file *.jar trong folder JSTL-api vào SQL-api vào WebContent>WEB-INF>lib
 
 
-- coppy c�c file web.xml v�o WebContent>WEB-INF
+- coppy các file web.xml vào WebContent>WEB-INF
 
 
-- coppy c�c file *.jsp v�o WebContent
+- coppy các file *.jsp vào WebContent
 
 
-- d? ch?nh s?a th�ng tin database, v�o web.xml ch?nh s?a n?t dung trong c�c th? param-value
+- để chỉnh sửa thông tin database, vào web.xml chỉnh sửa nội dung trong các thẻ param-value
 
 
--- t?o database s? d?ng code trong init_db_book.sql
+-- tạo database sử dụng code trong init_db_book.sql
