@@ -12,7 +12,7 @@
 - coppy các file web.xml vào WebContent>WEB-INF
 
 
-- coppy các file *.jsp vào WebContent
+- coppy các file *.jsp trong folder jsp vào WebContent 
 
 
 - để chỉnh sửa thông tin database, vào web.xml chỉnh sửa nội dung trong các thẻ param-value
