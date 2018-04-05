@@ -1,4 +1,4 @@
-package Controller;
+package com.smay.bookstore.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Model.Book;
-import Model.BookDAO;
+import com.smay.bookstore.model.bean.*;
+import com.smay.bookstore.model.dao.*;;
 
 
 public class ControllerServlet extends HttpServlet {

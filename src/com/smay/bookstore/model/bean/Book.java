@@ -1,4 +1,4 @@
-package Model;
+package com.smay.bookstore.model.bean;
 
 public class Book {
 	

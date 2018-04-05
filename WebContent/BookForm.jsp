@@ -11,19 +11,19 @@
 	<center>
         <h1>Books Management</h1>
         <h2>
-            <a href="/demo1/new">Add New Book</a>
+            <a href="/Bookstore/new">Add New Book</a>
             &nbsp;&nbsp;&nbsp;
-            <a href="/demo1/list">List All Books</a>   
+            <a href="/Bookstore/list">List All Books</a>   
         </h2>
     </center>
     <div align="center">
 	    <c:if test="${book != null}">
-	   		<c:set var="action" value="/demo1/update"/>
+	   		<c:set var="action" value="/Bookstore/update"/>
 	   		<c:set var="title" value="Edit Book"/>
 	   		<input type="hidden" name="id" value="<c:out value="${book.id}"/>">
 	    </c:if>
 	    <c:if test="${book == null}">
-	   		<c:set var="action" value="/demo1/insert"/>
+	   		<c:set var="action" value="/Bookstore/insert"/>
 	   		<c:set var="title" value="Add new Book"/>
 	    </c:if>
 	    <form action="<c:out value='${action}'/>" method="post">
