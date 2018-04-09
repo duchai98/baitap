@@ -1,3 +1,4 @@
+<%@page import="com.smay.bookstore.model.bean.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -9,6 +10,17 @@
 </head>
 <body>
 	<center>
+		<%
+			if (!((String)session.getAttribute("login")=="true")) {
+				
+				response.sendRedirect("/Bookstore/LoginForm.jsp");
+			} else {
+				
+				User user = (User)session.getAttribute("user");
+				
+				%><span>hello: </span><%= user.getName() %><% 
+			}
+		%>
         <h1>Books Management</h1>
         <h2>
             <a href="/Bookstore/new">Add New Book</a>
@@ -41,6 +53,7 @@
                 </tr>
             </c:forEach>
         </table>
+        <a href="/Bookstore/logout">Logout</a>
     </div>
 </body>
 </html>

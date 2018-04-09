@@ -1,7 +1,5 @@
 package com.smay.bookstore.model.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,57 +10,24 @@ import com.smay.bookstore.model.bean.Book;
 
 public class BookDAO {
 
-	private String hostName;
-	private String sqlInstanceName;
-    private String userName;
-    private String password;
-    private Connection connection;
-    private String database;
-    private String port;
-    
+    private ConnectionSQL connection;    
      
     public BookDAO(String hostName, String sqlInstanceName, String port, String database, String userName, String password) {
-		this.hostName = hostName;
-		this.sqlInstanceName = sqlInstanceName;
-		this.port = port;
-		this.database = database;
-		this.userName = userName;
-		this.password = password;
+		connection = new ConnectionSQL(hostName, sqlInstanceName, port, database, userName, password);
 	}
-
-	protected void connect() throws SQLException {
-        if (connection == null || connection.isClosed()) {
-        
-        	try {
-				Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-        	
-        	String connectionURL = "jdbc:sqlserver://" + hostName + ":" + port + ";instance=" + sqlInstanceName + ";databaseName=" + database;
-        
-            connection = DriverManager.getConnection(connectionURL, userName, password);
-        }
-    }
-     
-    protected void disconnect() throws SQLException {
-        if (connection != null && !connection.isClosed()) {
-            connection.close();
-        }
-    }
      
     public boolean insertBook(Book book) throws SQLException {
         String sql = "INSERT INTO book (title, author, price) VALUES (?, ?, ?)";
-        connect();
+        connection.connect();
          
-        PreparedStatement statement = connection.prepareStatement(sql);
+        PreparedStatement statement = connection.connection().prepareStatement(sql);
         statement.setString(1, book.getTitle());
         statement.setString(2, book.getAuthor());
         statement.setFloat(3, book.getPrice());
          
         boolean rowInserted = statement.executeUpdate() > 0;
         statement.close();
-        disconnect();
+        connection.disconnect();
         return rowInserted;
     }
      
@@ -71,9 +36,9 @@ public class BookDAO {
          
         String sql = "SELECT * FROM book";
          
-        connect();
+        connection.connect();
          
-        Statement statement = connection.createStatement();
+        Statement statement = connection.connection().createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
          
         while (resultSet.next()) {
@@ -89,7 +54,7 @@ public class BookDAO {
         resultSet.close();
         statement.close();
          
-        disconnect();
+        connection.disconnect();
          
         return listBook;
     }
@@ -97,23 +62,23 @@ public class BookDAO {
     public boolean deleteBook(Book book) throws SQLException {
         String sql = "DELETE FROM book where book_id = ?";
          
-        connect();
+        connection.connect();
          
-        PreparedStatement statement = connection.prepareStatement(sql);
+        PreparedStatement statement = connection.connection().prepareStatement(sql);
         statement.setInt(1, book.getId());
          
         boolean rowDeleted = statement.executeUpdate() > 0;
         statement.close();
-        disconnect();
+        connection.disconnect();
         return rowDeleted;     
     }
      
     public boolean updateBook(Book book) throws SQLException {
         String sql = "UPDATE book SET title = ?, author = ?, price = ?";
         sql += " WHERE book_id = ?";
-        connect();
+        connection.connect();
          
-        PreparedStatement statement = connection.prepareStatement(sql);
+        PreparedStatement statement = connection.connection().prepareStatement(sql);
         statement.setString(1, book.getTitle());
         statement.setString(2, book.getAuthor());
         statement.setFloat(3, book.getPrice());
@@ -121,7 +86,7 @@ public class BookDAO {
          
         boolean rowUpdated = statement.executeUpdate() > 0;
         statement.close();
-        disconnect();
+        connection.disconnect();
         return rowUpdated;     
     }
      
@@ -129,9 +94,9 @@ public class BookDAO {
         Book book = null;
         String sql = "SELECT * FROM book WHERE book_id = ?";
          
-        connect();
+        connection.connect();
          
-        PreparedStatement statement = connection.prepareStatement(sql);
+        PreparedStatement statement = connection.connection().prepareStatement(sql);
         statement.setInt(1, id);
          
         ResultSet resultSet = statement.executeQuery();
@@ -146,6 +111,7 @@ public class BookDAO {
          
         resultSet.close();
         statement.close();
+        connection.disconnect();
          
         return book;
     }

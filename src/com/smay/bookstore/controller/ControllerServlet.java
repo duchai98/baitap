@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.smay.bookstore.model.bean.*;
-import com.smay.bookstore.model.dao.*;;
+import com.smay.bookstore.model.dao.*;
 
 
 public class ControllerServlet extends HttpServlet {
@@ -26,7 +26,7 @@ public class ControllerServlet extends HttpServlet {
 		String userName = getServletContext().getInitParameter("userName");
 		String password = getServletContext().getInitParameter("password");
 		
-		bookDAO = new BookDAO(hostName, sqlInstanceName, port, database, userName, password);
+		bookDAO = new BookDAO(hostName, sqlInstanceName, port, database, userName, password);	
 	}
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
@@ -35,6 +35,7 @@ public class ControllerServlet extends HttpServlet {
 		String action = request.getServletPath();
     	
         try {
+        	
         	switch (action) {
         		case "/new":
         			showNewForm(request, response);
